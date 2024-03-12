@@ -1,5 +1,11 @@
 # REST API
 
+## Members
+
+1. Thuy Dang
+2. Redeat Haile
+3. Khang Nguyen
+
 ## Requirements
 
 This is a group assignment
