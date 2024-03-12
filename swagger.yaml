@@ -1,0 +1,5 @@
+openapi: 3.0.0
+info:
+  title: Simple Hello API
+  description: A super simple API that returns a greeting message
+  version: 1.0.0
