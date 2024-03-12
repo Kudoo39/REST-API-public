@@ -2,7 +2,7 @@
 
 ## Members
 
-1. Thuy Dang
+1. Thuy Dang Kimmi
 2. Redeat Haile Haile
 3. Khang Nguyen
 
