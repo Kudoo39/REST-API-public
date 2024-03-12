@@ -1,5 +1,19 @@
 openapi: 3.0.0
 info:
-  title: Simple Hello API
-  description: A super simple API that returns a greeting message
+  title: Simple E-commerce API
+  description: A simple API for managing products, orders, users, and categories in an e-commerce system.
   version: 1.0.0
+paths:
+  /products:
+    get:
+      summary: Get all products
+      description: Get a list of all products available.
+      responses:
+        '200':
+          description: Get all products successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
