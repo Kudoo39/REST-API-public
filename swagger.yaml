@@ -16,4 +16,19 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Product'
+                  $ref: '#/paths/~1products/get/responses/200/content/application~1json/schema'
+    post:
+      summary: Creat a new product
+      description: Creat a new product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/paths/~1products/get/responses/200/content/application~1json/schema'
+      responses:
+        '201':
+          description: Creat new product successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/paths/~1products/get/responses/200/content/application~1json/schema'
