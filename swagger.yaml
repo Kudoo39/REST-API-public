@@ -1,16 +1,21 @@
 openapi: 3.0.0
+servers:
+  - description: SwaggerHub API
+    url: HTTP
+  - description: SwaggerHub Secure API
+    url: HTTPS
 info:
-  title: Simple E-commerce API
+  title: A simple E-commerce API
   description: A simple API for managing products, orders, users, and categories in an e-commerce system.
   version: 1.0.0
 paths:
   /products:
     get:
-      summary: Get all products
-      description: Get a list of all products available.
+      summary: get all products
+      description: get all available products.
       responses:
         '200':
-          description: Get all products successful
+          description: get all products successfully
           content:
             application/json:
               schema:
@@ -18,17 +23,72 @@ paths:
                 items:
                   $ref: '#/paths/~1products/get/responses/200/content/application~1json/schema'
     post:
-      summary: Creat a new product
-      description: Creat a new product
+      summary: create a new product
+      description: create a new product
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/paths/~1products/get/responses/200/content/application~1json/schema'
+              $ref: '#/components/schemas/Product'
       responses:
         '201':
-          description: Creat new product successful
+          description: create new product successfully
           content:
             application/json:
               schema:
-                $ref: '#/paths/~1products/get/responses/200/content/application~1json/schema'
+                $ref: '#/components/schemas/Product'
+
+  /products/productId:
+    put:
+      summary: update a product
+      description: delete a product by the product id
+      parameters:
+        - name: productId
+          required: true
+          in: path
+          description: id of the product
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: the product with that product id is updated successfully
+
+    delete:
+      summary: delete the product by the product id
+      description: delete the product by the product id
+      parameters:
+        - name: productId
+          required: true
+          in: path
+          description: id of the product
+          schema:
+            type: string
+      responses:
+        '204':
+          description: the product with that product id is deleted successfully
+
+  # /users:
+  # /users/userId:
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "102"
+        title:
+          type: string
+          example: 'product1'
+        price:
+         type: integer
+         example: 1
+
+    # User:
