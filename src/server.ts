@@ -71,7 +71,7 @@ const PORT = 8000;
 const server: Server = http.createServer(
   (request: IncomingMessage, response: ServerResponse) => {
     // Get /products
-    // endpoint: https://api.escuelajs.co/api/v1/products
+    // endpoint: http://localhost:8000/api/v1/products
 
     if (request.method === "GET" && request.url === "/api/v1/products") {
       response.writeHead(200, { "Content-Type": "application/json" });
@@ -79,7 +79,7 @@ const server: Server = http.createServer(
     }
 
     // Get /products/{productId}
-    // endpoint: https://api.escuelajs.co/api/v1/products/{productId}
+    // endpoint: http://localhost:8000/api/v1/products/{productId}
 
     if (request.method === "GET" && request.url && request.url.startsWith("/api/v1/products/")) {
       const productId = request.url.split("/")[4];
@@ -94,7 +94,7 @@ const server: Server = http.createServer(
     }
 
     // Post /products
-    // endpoint: https://api.escuelajs.co/api/v1/products
+    // endpoint: http://localhost:8000/api/v1/products
     
     if (request.method === "POST" && request.url === "/api/v1/products") {
       let body = "";
@@ -110,7 +110,8 @@ const server: Server = http.createServer(
     }
 
     // Delete /products/{productId}
-    // endpoint: https://api.escuelajs.co/api/v1/products/{productId}
+    // endpoint: http://localhost:8000/api/v1/products/{productId}
+
     if (request.method === "DELETE" && request.url &&request.url.startsWith("/api/v1/products")) {
       const productId = request.url.split("/")[4];
       console.log(productId, "id");
@@ -119,8 +120,9 @@ const server: Server = http.createServer(
       response.end();
     }
 
-    // PUT /products/{productId}
-    // endpoint: https://api.escuelajs.co/api/v1/products/{productId}
+    // Put /products/{productId}
+    // endpoint: http://localhost:8000/api/v1/products/{productId}
+
     if (request.method === "PUT" && request.url && request.url.startsWith("/api/v1/products")) {
       const productId = request.url.split("/")[4];
       let body = "";
@@ -144,7 +146,7 @@ const server: Server = http.createServer(
 
 //-----------------------------------------------------------------------------------//
     // Get /users/{userId}
-    // endpoint: https://api.escuelajs.co/api/v1/users/{userId}
+    // endpoint: http://localhost:8000/api/v1/users/{userId}
 
     if (
       request.method === "GET" &&
@@ -163,7 +165,7 @@ const server: Server = http.createServer(
     }
 
     // Post /users
-    // endpoint: https://api.escuelajs.co/api/v1/users/
+    // endpoint: http://localhost:8000/api/v1/users
 
     if (request.method === "POST" && request.url === "/api/v1/users") {
       let body = "";
