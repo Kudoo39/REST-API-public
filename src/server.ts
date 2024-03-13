@@ -179,6 +179,33 @@ const server: Server = http.createServer(
         response.end(JSON.stringify(newUser));
       });
     }
+
+    //-----------------------------------------------------------------------------------//
+    // Put /users/{userId}
+    // endpoint: http://localhost:8000/api/v1/users/{userId}
+    if (
+        request.method === "PUT" &&
+        request.url &&
+        request.url.startsWith("/api/v1/users")
+      ) {
+        const userId = request.url.split("/")[4];
+        let body = "";
+        request.on("data", (chunk) => {
+          body += chunk;
+        });
+        request.on("end", () => {
+          const updatedUser = JSON.parse(body);
+          const index = users.findIndex((user) => user.id === userId);
+          if (index !== -1) {
+            users[index] = { ...users[index], ...updatedUser }
+            response.writeHead(200, { "Content-Type": "application/json" });
+            response.end(JSON.stringify(users[index]));
+          } else {
+            response.writeHead(404, { "Content-Type": "application/json" });
+            response.end(JSON.stringify({ message: "User not found" }));
+          }
+        });
+      }
   }
 );
 
