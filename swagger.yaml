@@ -81,7 +81,7 @@ components:
     Product:
       type: object
       properties:
-        id:
+        productId:
           type: string
           example: "102"
         title:
@@ -90,5 +90,36 @@ components:
         price:
          type: integer
          example: 1
+        description:
+          type: string
+          example: 'this is a product'
+        size:
+          type: number
+          example: '40'
+        images:
+          type: string
+          example: 'https://fastly.picsum.photos/id/5/640/480.jpg'
+        categoryId:
+          type: string
 
-    # User:
+    User:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: '203'
+        email:
+          type: string
+          example: 'user@mail.com'
+        password:
+          type: string
+          example: 'password'
+        fullname:
+          type: string
+          example: 'John Smith'
+        role:
+          type: string
+          example: 'customer'
+        avatar:
+          type: string
+          example: 'https://fastly.picsum.photos/id/5/640/480.jpg'
