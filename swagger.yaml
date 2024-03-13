@@ -8,9 +8,16 @@ info:
   title: A simple E-commerce API
   description: A simple API for managing products, orders, users, and categories in an e-commerce system.
   version: 1.0.0
+tags:
+  - name: product
+    description: Everything about your product
+  - name: user
+    description: Operations about user
 paths:
   /products:
     get:
+      tags:
+        - product
       summary: get all products
       description: get all available products.
       responses:
@@ -21,8 +28,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/paths/~1products/get/responses/200/content/application~1json/schema'
+                  $ref: '#/components/schemas/Product'
+
     post:
+      tags:
+        - product
       summary: create a new product
       description: create a new product
       requestBody:
@@ -38,10 +48,27 @@ paths:
               schema:
                 $ref: '#/components/schemas/Product'
 
-  /products/productId:
+  /products/{productId}:
+    get:
+      tags:
+        - product
+      summary: get a product
+      description: get a product
+      responses:
+        '200':
+          description: get a product successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                items:
+                  $ref: '#/components/schemas/Product'
+
     put:
+      tags:
+        - product
       summary: update a product
-      description: delete a product by the product id
+      description: update a product by the product id
       parameters:
         - name: productId
           required: true
@@ -60,6 +87,8 @@ paths:
           description: the product with that product id is updated successfully
 
     delete:
+      tags:
+        - product
       summary: delete the product by the product id
       description: delete the product by the product id
       parameters:
@@ -73,8 +102,62 @@ paths:
         '204':
           description: the product with that product id is deleted successfully
 
-  # /users:
-  # /users/userId:
+  /users:
+    post:
+      tags:
+        - user
+      summary: create a new user
+      description: create a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: create new user successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /users/{userId}:
+    get:
+      tags:
+        - user
+      summary: get a user
+      description: get a user
+      responses:
+        '200':
+          description: get a user successfully
+          content:
+            application/json:
+              schema:
+                type: string
+                items:
+                  $ref: '#/components/schemas/User'
+
+    put:
+      tags:
+        - user
+      summary: update a user
+      description: update a user by the user id
+      parameters:
+        - name: userId
+          required: true
+          in: path
+          description: id of the user
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: the user with that user id is updated successfully
 
 components:
   schemas:
@@ -83,13 +166,13 @@ components:
       properties:
         productId:
           type: string
-          example: "102"
+          example: '102'
         title:
           type: string
           example: 'product1'
         price:
-         type: integer
-         example: 1
+          type: integer
+          example: 1
         description:
           type: string
           example: 'this is a product'
